@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+
+<Properties>
+  <Property name="logNm">swift-depends</Property>
+  <Property name="layoutPattern">%d [%t] %-5level %c(%M:%L) - %m%n</Property>
+</Properties>
+
+<Appenders>
+  <RollingFile name="file" fileName="./${sys:logDirectory}/log/${logNm}.log" filePattern="./${sys:logDirectory}/log/logs/${logNm}_%d{yyyy-MM-dd}_%i.log">
+   <PatternLayout pattern="${layoutPattern}" />
+   <Policies>
+    <SizeBasedTriggeringPolicy size="10MB" />
+    <TimeBasedTriggeringPolicy interval="1"/>
+   </Policies>
+   <DefaultRolloverStrategy max="500" fileIndex="min" />
+  </RollingFile>
+ </Appenders>
+
+ <Loggers>
+  <Root level="debug" additivity="false" >
+   <AppenderRef ref="file" />
+  </Root>
+ </Loggers>
+
+</Configuration>
