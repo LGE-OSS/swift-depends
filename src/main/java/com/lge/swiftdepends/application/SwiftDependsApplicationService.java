@@ -53,7 +53,7 @@ public class SwiftDependsApplicationService implements ISwiftDependsApplicationS
 		
 		// Create a json file of component objects list
 		System.out.println("Start creating a json file of component object list...");
-		JsonRepository jsonRepository = new JsonRepository(outputPath.resolve(projectName + ".json"));
+		ComponentRepository jsonRepository = new JsonRepository(outputPath.resolve(projectName + ".json"));
 		if (!jsonRepository.create(components)) {
 			System.out.println("Fail to create a json file of component object list...");
 			return false;

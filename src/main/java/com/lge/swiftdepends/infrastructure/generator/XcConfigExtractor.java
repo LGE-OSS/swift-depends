@@ -110,6 +110,7 @@ public class XcConfigExtractor {
 									.map(s -> s.replace("${PODS_CONFIGURATION_BUILD_DIR}", PODS_CONFIGURATION_BUILD_DIR))
 									.map(s -> s.replace("${PODS_XCFRAMEWORKS_BUILD_DIR}", PODS_XCFRAMEWORKS_BUILD_DIR))
 									.map(s -> s.replace("${PODS_ROOT}", PODS_ROOT))
+									.map(s -> s.replace("$(PODS_ROOT)", PODS_ROOT))
 									.map(s -> s = "-F " + s )
 									.collect(Collectors.toList());
 		
@@ -134,6 +135,7 @@ public class XcConfigExtractor {
 							  .stream().filter(s -> s.contains("-fmodule-map-file"))
 							  .map(s -> s.replace("${PODS_CONFIGURATION_BUILD_DIR}", PODS_CONFIGURATION_BUILD_DIR))
 							  .map(s -> s.replace("${PODS_ROOT}", PODS_ROOT))
+							  .map(s -> s.replace("$(PODS_ROOT)", PODS_ROOT))
 							  .collect(Collectors.toList());
 		
 		return moduleMapList;
@@ -150,6 +152,7 @@ public class XcConfigExtractor {
 								  .map(s -> s.replace("${PODS_CONFIGURATION_BUILD_DIR}", PODS_CONFIGURATION_BUILD_DIR))
 								  .map(s -> s.replace("${PODS_XCFRAMEWORKS_BUILD_DIR}", PODS_XCFRAMEWORKS_BUILD_DIR))
 								  .map(s -> s.replace("${PODS_ROOT}", PODS_ROOT))
+								  .map(s -> s.replace("$(PODS_ROOT)", PODS_ROOT))
 								  .map(s -> s = "-L " + s)
 								  .collect(Collectors.toList());
 		return librarySearchPath;
@@ -177,6 +180,7 @@ public class XcConfigExtractor {
 						.stream().filter(s -> !s.contains("inherited"))
 					    .map(s -> s.replace("${PODS_CONFIGURATION_BUILD_DIR}", PODS_CONFIGURATION_BUILD_DIR))
 					    .map(s -> s.replace("${PODS_ROOT}", PODS_ROOT))
+					    .map(s -> s.replace("$(PODS_ROOT)", PODS_ROOT))
 					    .map(s -> s = "-I" + s)
 					    .collect(Collectors.toList());
 		includes.add("-I\""+PODS_CONFIGURATION_BUILD_DIR+"/include\"");
@@ -194,6 +198,7 @@ public class XcConfigExtractor {
 				  				  .map(s -> s.replace("${PODS_CONFIGURATION_BUILD_DIR}", PODS_CONFIGURATION_BUILD_DIR))
 				  				  .map(s -> s.replace("${PODS_XCFRAMEWORKS_BUILD_DIR}", PODS_XCFRAMEWORKS_BUILD_DIR))
 				  				  .map(s -> s.replace("${PODS_ROOT}", PODS_ROOT))
+				  				  .map(s -> s.replace("$(PODS_ROOT)", PODS_ROOT))
 				  				  .map(s -> s.replace("${PODS_TARGET_SRCROOT}", PODS_TARGET_SRCROOT))
 				  				  .map(s -> s.replace("$(SDKROOT)", SDK_ROOT))
 				  				  .map(s -> s = "-I" + s)

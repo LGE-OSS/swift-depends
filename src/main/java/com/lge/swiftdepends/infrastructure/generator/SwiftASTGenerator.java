@@ -193,7 +193,7 @@ public class SwiftASTGenerator implements ASTGenerator{
 				while( (line = br.readLine()) != null) {
 					silLog.append(line+"\n");
 					
-					if(line.contains("<unknown>:0: error:") || line.contains("\"exit-status\": 1")) {
+					if(line.contains(": error:") || line.contains("<unknown>:0: error:") || line.contains("\"exit-status\": 1")) {
 						logger.error(silLog.toString());
 						return false;
 					}
@@ -205,13 +205,13 @@ public class SwiftASTGenerator implements ASTGenerator{
 						}
 					}
 					
-					if(line.contains("\"inputs\": ")) {
+					if(line.contains("\"inputs\"")) {
 						flag = true;
 					} else {
 						flag = false;
 					}
 					
-					if(line.contains("\"output\":") && line.contains("(source_file")) {
+					if(line.contains("\"output\"") && line.contains("(source_file")) {
 						int end = line.indexOf("(source_file");
 						if(line.substring(0, end).contains(": error:") ) {
 							String json = "{" + line.substring(0, end) + "\" }";
@@ -253,10 +253,10 @@ public class SwiftASTGenerator implements ASTGenerator{
 				bw.write(astLogString);
 			} catch(IOException e) {
 				System.out.println("[Exception] When writing AST file.");
+				return false;
 			} finally {
 				try {
 					bw.close();
-					return false;
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
