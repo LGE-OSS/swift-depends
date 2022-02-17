@@ -42,7 +42,6 @@ public class LattixRepository implements ComponentRepository {
 		AtomDependencyListCreator atomDependencyListCreator = new AtomDependencyListCreator();
 		components.forEach(component -> {
 			component.accecpt(atomDependencyListCreator);
-			;
 		});
 
 		// create 'Definitions' sheet
