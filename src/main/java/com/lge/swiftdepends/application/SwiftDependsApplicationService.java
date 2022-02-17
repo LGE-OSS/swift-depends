@@ -19,6 +19,7 @@ import com.lge.swiftdepends.infrastructure.generator.SwiftASTGenerator;
 import com.lge.swiftdepends.infrastructure.parser.SwiftASTParser;
 import com.lge.swiftdepends.infrastructure.persistence.JsonRepository;
 import com.lge.swiftdepends.infrastructure.persistence.LattixRepository;
+import com.lge.swiftdepends.infrastructure.persistence.LdiXmlRepository;
 
 public class SwiftDependsApplicationService implements ISwiftDependsApplicationService {
 
@@ -59,6 +60,16 @@ public class SwiftDependsApplicationService implements ISwiftDependsApplicationS
 			return false;
 		}
 		System.out.println("Json file creation is completed...");
+		
+		// Create a LDI XML file
+		System.out.println("Start creating a LDI XML file...");
+		ComponentRepository ldiXmlRepository = new LdiXmlRepository(outputPath.resolve(projectName + ".ldi.xml"));
+		if (!ldiXmlRepository.create(components)) {
+			System.out.println("Fail to create a LDI XML file...");
+			return false;
+		}
+		System.out.println("LDI XML file creation is completed...");
+		
 		
 		return true;
 	}
