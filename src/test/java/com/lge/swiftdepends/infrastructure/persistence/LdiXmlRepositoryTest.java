@@ -1,8 +1,5 @@
 package com.lge.swiftdepends.infrastructure.persistence;
 
-import static org.junit.Assert.*;
-
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +18,6 @@ import com.lge.swiftdepends.infrastructure.parser.SwiftASTParser;
 
 public class LdiXmlRepositoryTest {
 	private List<Component> components = new ArrayList<Component>();
-	private List<Component> jsonComponents = new ArrayList<Component>();
 
 	@Before
 	public void setUp() throws Exception {
